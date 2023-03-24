@@ -1,10 +1,11 @@
 part of 'city_weather_cubit.dart';
 
-abstract class CityWeatherState extends Equatable {
-  const CityWeatherState();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class CityWeatherState with _$CityWeatherState {
+  factory CityWeatherState.initial() = _CityWeatherInitialState;
+  factory CityWeatherState.loading() = _CityWeatherLoadingState;
+  factory CityWeatherState.error() = _CityWeatherErrorState;
+  factory CityWeatherState.loaded({
+    required List<WeatherModel> weather,
+  }) = _CityWeatherLoadedState;
 }
-
-class CityWeatherInitial extends CityWeatherState {}
