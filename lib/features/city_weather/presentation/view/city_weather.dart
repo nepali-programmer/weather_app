@@ -6,7 +6,7 @@ import '../cubit/city_weather/city_weather_cubit.dart';
 import 'top_bar.dart';
 import 'weather_error.dart';
 import 'weather_initial.dart';
-import 'weather_list.dart';
+import 'weather_loaded.dart';
 import 'weather_loading.dart';
 
 class CityWeather extends StatelessWidget {
@@ -31,7 +31,7 @@ class CityWeather extends StatelessWidget {
                     initial: () => const WeatherInitial(),
                     loading: () => const WeatherLoading(),
                     error: () => const WeatherError(),
-                    loaded: (weather) => WeatherList(weather: weather),
+                    loaded: (weather) => WeatherLoaded(weather: weather),
                   );
                 },
               ),

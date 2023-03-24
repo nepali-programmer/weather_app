@@ -6,6 +6,6 @@ class CityWeatherState with _$CityWeatherState {
   factory CityWeatherState.loading() = _CityWeatherLoadingState;
   factory CityWeatherState.error() = _CityWeatherErrorState;
   factory CityWeatherState.loaded({
-    required List<WeatherModel> weather,
+    required WeatherList weather,
   }) = _CityWeatherLoadedState;
 }

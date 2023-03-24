@@ -21,7 +21,7 @@ mixin _$CityWeatherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<WeatherModel> weather) loaded,
+    required TResult Function(WeatherList weather) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$CityWeatherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<WeatherModel> weather)? loaded,
+    TResult? Function(WeatherList weather)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$CityWeatherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<WeatherModel> weather)? loaded,
+    TResult Function(WeatherList weather)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,7 +128,7 @@ class _$_CityWeatherInitialState implements _CityWeatherInitialState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<WeatherModel> weather) loaded,
+    required TResult Function(WeatherList weather) loaded,
   }) {
     return initial();
   }
@@ -139,7 +139,7 @@ class _$_CityWeatherInitialState implements _CityWeatherInitialState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<WeatherModel> weather)? loaded,
+    TResult? Function(WeatherList weather)? loaded,
   }) {
     return initial?.call();
   }
@@ -150,7 +150,7 @@ class _$_CityWeatherInitialState implements _CityWeatherInitialState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<WeatherModel> weather)? loaded,
+    TResult Function(WeatherList weather)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -243,7 +243,7 @@ class _$_CityWeatherLoadingState implements _CityWeatherLoadingState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<WeatherModel> weather) loaded,
+    required TResult Function(WeatherList weather) loaded,
   }) {
     return loading();
   }
@@ -254,7 +254,7 @@ class _$_CityWeatherLoadingState implements _CityWeatherLoadingState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<WeatherModel> weather)? loaded,
+    TResult? Function(WeatherList weather)? loaded,
   }) {
     return loading?.call();
   }
@@ -265,7 +265,7 @@ class _$_CityWeatherLoadingState implements _CityWeatherLoadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<WeatherModel> weather)? loaded,
+    TResult Function(WeatherList weather)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -357,7 +357,7 @@ class _$_CityWeatherErrorState implements _CityWeatherErrorState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<WeatherModel> weather) loaded,
+    required TResult Function(WeatherList weather) loaded,
   }) {
     return error();
   }
@@ -368,7 +368,7 @@ class _$_CityWeatherErrorState implements _CityWeatherErrorState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<WeatherModel> weather)? loaded,
+    TResult? Function(WeatherList weather)? loaded,
   }) {
     return error?.call();
   }
@@ -379,7 +379,7 @@ class _$_CityWeatherErrorState implements _CityWeatherErrorState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<WeatherModel> weather)? loaded,
+    TResult Function(WeatherList weather)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -436,7 +436,7 @@ abstract class _$$_CityWeatherLoadedStateCopyWith<$Res> {
           $Res Function(_$_CityWeatherLoadedState) then) =
       __$$_CityWeatherLoadedStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<WeatherModel> weather});
+  $Res call({WeatherList weather});
 }
 
 /// @nodoc
@@ -454,9 +454,9 @@ class __$$_CityWeatherLoadedStateCopyWithImpl<$Res>
   }) {
     return _then(_$_CityWeatherLoadedState(
       weather: null == weather
-          ? _value._weather
+          ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
-              as List<WeatherModel>,
+              as WeatherList,
     ));
   }
 }
@@ -464,16 +464,10 @@ class __$$_CityWeatherLoadedStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
-  _$_CityWeatherLoadedState({required final List<WeatherModel> weather})
-      : _weather = weather;
+  _$_CityWeatherLoadedState({required this.weather});
 
-  final List<WeatherModel> _weather;
   @override
-  List<WeatherModel> get weather {
-    if (_weather is EqualUnmodifiableListView) return _weather;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weather);
-  }
+  final WeatherList weather;
 
   @override
   String toString() {
@@ -485,12 +479,11 @@ class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CityWeatherLoadedState &&
-            const DeepCollectionEquality().equals(other._weather, _weather));
+            (identical(other.weather, weather) || other.weather == weather));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_weather));
+  int get hashCode => Object.hash(runtimeType, weather);
 
   @JsonKey(ignore: true)
   @override
@@ -505,7 +498,7 @@ class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<WeatherModel> weather) loaded,
+    required TResult Function(WeatherList weather) loaded,
   }) {
     return loaded(weather);
   }
@@ -516,7 +509,7 @@ class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<WeatherModel> weather)? loaded,
+    TResult? Function(WeatherList weather)? loaded,
   }) {
     return loaded?.call(weather);
   }
@@ -527,7 +520,7 @@ class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<WeatherModel> weather)? loaded,
+    TResult Function(WeatherList weather)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -575,10 +568,10 @@ class _$_CityWeatherLoadedState implements _CityWeatherLoadedState {
 }
 
 abstract class _CityWeatherLoadedState implements CityWeatherState {
-  factory _CityWeatherLoadedState({required final List<WeatherModel> weather}) =
+  factory _CityWeatherLoadedState({required final WeatherList weather}) =
       _$_CityWeatherLoadedState;
 
-  List<WeatherModel> get weather;
+  WeatherList get weather;
   @JsonKey(ignore: true)
   _$$_CityWeatherLoadedStateCopyWith<_$_CityWeatherLoadedState> get copyWith =>
       throw _privateConstructorUsedError;

@@ -14,11 +14,11 @@ class CityWeatherReposotiryImpl implements CityWeatherRepository {
     required this.cityWeatherOnlineDataSource,
   });
   @override
-  Future<Either<AppError, List<WeatherModel>>> getWeather(
+  Future<Either<AppError, WeatherList>> getWeather(
     String cityName,
   ) async {
     try {
-      List<WeatherModel> weatherList =
+      WeatherList weatherList =
           await cityWeatherOnlineDataSource.getWeather(cityName);
       return right(weatherList);
     } catch (e) {

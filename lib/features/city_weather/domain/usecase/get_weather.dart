@@ -12,7 +12,7 @@ class GetWeather {
   GetWeather({
     required this.cityWeatherRepository,
   });
-  Future<Either<AppError, List<WeatherModel>>> call(
+  Future<Either<AppError, WeatherList>> call(
     String cityName,
   ) async {
     return cityWeatherRepository.getWeather(cityName);

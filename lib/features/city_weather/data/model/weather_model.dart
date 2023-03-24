@@ -19,27 +19,63 @@ class WeatherDetailModel {
 }
 
 class WeatherModel {
-  final DateTime date;
-  final DateTime sunrise;
-  final DateTime sunset;
+  final String date;
+  final String visibility;
+  final String humidity;
+  final String temp;
   final List<WeatherDetailModel> weather;
   WeatherModel({
     required this.date,
-    required this.sunrise,
-    required this.sunset,
     required this.weather,
+    required this.visibility,
+    required this.humidity,
+    required this.temp,
   });
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     return WeatherModel(
-      date: DateTime.fromMillisecondsSinceEpoch(map['dt']),
-      sunrise: DateTime.fromMillisecondsSinceEpoch(map['sunrise']),
-      sunset: DateTime.fromMillisecondsSinceEpoch(map['sunset']),
+      date: map['dt_txt'] ?? '',
+      visibility: map['visibility'].toString(),
+      humidity: map['main']['humidity'].toString(),
+      temp: (map['main']['temp'] - 273).toStringAsFixed(2),
       weather: List<WeatherDetailModel>.from(
         (map['weather'] ?? []).map<WeatherDetailModel>(
           (x) => WeatherDetailModel.fromMap(x ?? {}),
         ),
       ),
+    );
+  }
+}
+
+class WeatherCity {
+  final String name;
+  WeatherCity({
+    required this.name,
+  });
+
+  factory WeatherCity.fromMap(Map<String, dynamic> map) {
+    return WeatherCity(
+      name: map['name'] as String,
+    );
+  }
+}
+
+class WeatherList {
+  final List<WeatherModel> list;
+  final WeatherCity city;
+
+  WeatherList({
+    required this.list,
+    required this.city,
+  });
+  factory WeatherList.fromMap(Map<String, dynamic> map) {
+    return WeatherList(
+      list: List<WeatherModel>.from(
+        (map['list'] ?? []).map<WeatherModel>(
+          (x) => WeatherModel.fromMap(x ?? {}),
+        ),
+      ),
+      city: WeatherCity.fromMap(map['city'] ?? {}),
     );
   }
 }

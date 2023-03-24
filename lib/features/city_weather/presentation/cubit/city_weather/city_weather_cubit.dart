@@ -20,7 +20,7 @@ class CityWeatherCubit extends Cubit<CityWeatherState> {
   getWeatherData(String city) async {
     emit(CityWeatherState.loading());
     await Future.delayed(const Duration(seconds: 2));
-    Either<AppError, List<WeatherModel>> result = await getWeather(city);
+    Either<AppError, WeatherList> result = await getWeather(city);
     result.fold(
       (l) => emit(CityWeatherState.error()),
       (r) => emit(CityWeatherState.loaded(weather: r)),
