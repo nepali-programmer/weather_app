@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/extension/date_extension.dart';
 
 import '../../../../data/constant/app_constant.dart';
 import '../../data/model/weather_model.dart';
@@ -64,13 +65,34 @@ class WeatherCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(weather.date.toString()),
+          Text(DateTime.parse(weather.date).beautiful()),
+          Row(
+            children: [
+              Text(
+                '${weather.temp}°',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              Image.network(
+                weather.weather[0].icon,
+                width: 72.0,
+                height: 72.0,
+              ),
+              Expanded(
+                child: ListTile(
+                  horizontalTitleGap: 0.0,
+                  iconColor: Theme.of(context).colorScheme.primary,
+                  trailing: const Icon(Icons.air),
+                  dense: true,
+                  title: Text(
+                    '${weather.windSpeed} km/h',
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+            ],
+          ),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: Image.network(
-              weather.weather[0].icon,
-              width: 56.0,
-            ),
             title: Text(weather.weather[0].main),
             subtitle: Text(weather.weather[0].description),
             dense: true,
@@ -79,13 +101,9 @@ class WeatherCard extends StatelessWidget {
             children: [
               Expanded(
                 child: ListTile(
-                  title: const Text('Temp'),
-                  subtitle: Text(weather.temp),
-                  dense: true,
-                ),
-              ),
-              Expanded(
-                child: ListTile(
+                  horizontalTitleGap: 0.0,
+                  iconColor: Theme.of(context).colorScheme.primary,
+                  leading: const Icon(Icons.landscape),
                   title: const Text('Visibility'),
                   subtitle: Text(weather.visibility),
                   dense: true,
@@ -93,6 +111,9 @@ class WeatherCard extends StatelessWidget {
               ),
               Expanded(
                 child: ListTile(
+                  horizontalTitleGap: 0.0,
+                  iconColor: Theme.of(context).colorScheme.primary,
+                  leading: const Icon(Icons.water_drop),
                   title: const Text('Humidity'),
                   subtitle: Text(weather.humidity),
                   dense: true,

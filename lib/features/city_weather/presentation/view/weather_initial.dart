@@ -9,13 +9,15 @@ class WeatherInitial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        SizedBox(height: kExtraLargeSpacing),
-        Icon(
-          Icons.location_city,
-          size: kLargeIcon,
+      children: [
+        const SizedBox(height: kExtraLargeSpacing),
+        Image.asset(
+          'assets/images/weather.png',
+          width: 100.0,
+          height: 100.0,
         ),
-        Text(
+        const SizedBox(height: kDefaultSpacing),
+        const Text(
           'Weather App',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -23,7 +25,7 @@ class WeatherInitial extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        Text(
+        const Text(
           'Enter city name to view weather',
           style: TextStyle(
             fontSize: 14.0,

@@ -9,13 +9,15 @@ class WeatherEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        SizedBox(height: kExtraLargeSpacing),
-        Icon(
-          Icons.search_off,
-          size: kLargeIcon,
+      children: [
+        const SizedBox(height: kExtraLargeSpacing),
+        Image.asset(
+          'assets/images/404.png',
+          width: 100.0,
+          height: 100.0,
         ),
-        Text(
+        const SizedBox(height: kDefaultSpacing),
+        const Text(
           'Data Not Found',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -23,7 +25,7 @@ class WeatherEmpty extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        Text(
+        const Text(
           'Try changing city name to get weather data',
           style: TextStyle(
             fontSize: 14.0,

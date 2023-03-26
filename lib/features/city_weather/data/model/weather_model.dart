@@ -23,12 +23,14 @@ class WeatherModel {
   final String visibility;
   final String humidity;
   final String temp;
+  final String windSpeed;
   final List<WeatherDetailModel> weather;
   WeatherModel({
     required this.date,
     required this.weather,
     required this.visibility,
     required this.humidity,
+    required this.windSpeed,
     required this.temp,
   });
 
@@ -38,6 +40,9 @@ class WeatherModel {
       visibility: map['visibility'].toString(),
       humidity: map['main']['humidity'].toString(),
       temp: (map['main']['temp'] - 273).toStringAsFixed(2),
+      windSpeed: map['wind'] == null
+          ? ''
+          : (map['wind']['speed'] * 3.6).toStringAsFixed(1),
       weather: List<WeatherDetailModel>.from(
         (map['weather'] ?? []).map<WeatherDetailModel>(
           (x) => WeatherDetailModel.fromMap(x ?? {}),

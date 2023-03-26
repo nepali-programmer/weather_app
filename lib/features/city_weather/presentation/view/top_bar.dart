@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/widget/button/main_button.dart';
+import '../../../../core/widget/button/main_icon_button.dart';
 import '../../../../data/constant/app_constant.dart';
 import '../cubit/city_weather/city_weather_cubit.dart';
 
@@ -65,8 +67,8 @@ class _TopBarState extends State<TopBar> {
               ),
             ),
             const SizedBox(width: kSmallSpacing),
-            ElevatedButton(
-              child: const Icon(Icons.search),
+            MainIconButton(
+              icon: Icons.search,
               onPressed: () {
                 getWeather();
               },
